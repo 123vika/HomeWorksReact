@@ -5,11 +5,12 @@ import StyledComponent from './StyledComponent/StyledComponent';
 
 const messageComponentText = 'Hello guys, this is first message component';
 const secondComponentText = 'This is second component text';
+const textMessage = 'This is message for home work';
 function App() {
   return (
     <div className='App'>
       <p>Hello wopld</p>
-      <FirstComponent />
+      <FirstComponent homeWork={textMessage} />
       <SecondComponent text={secondComponentText} />
       <StyledComponent />
       <MessageComponent firstProps='1' secondProps={messageComponentText} />

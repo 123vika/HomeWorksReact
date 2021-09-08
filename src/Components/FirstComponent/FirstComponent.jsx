@@ -1,6 +1,6 @@
 import './style.css';
-const FirstComponent = () => {
-  return <div className='first'>First Component</div>;
+const FirstComponent = ({ homeWork }) => {
+  return <div className='first'>{homeWork}</div>;
 };
 
 export default FirstComponent;
