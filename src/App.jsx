@@ -1,21 +1,41 @@
-import FirstComponent from './Components/FirstComponent/FirstComponent';
-import MessageComponent from './Components/Message/Message';
-import SecondComponent from './Components/SecondComponent/SecondComponent';
-import StyledComponent from './StyledComponent/StyledComponent';
+import { useEffect, useState } from 'react'; //
+import MessageForm from './Components/MessageForm/MessageForm';
+import MessageList from './Components/MessageList/MessageList';
 
-const messageComponentText = 'Hello guys, this is first message component';
-const secondComponentText = 'This is second component text';
-const textMessage = 'This is message for home work';
 function App() {
+  // const [newMsg, setNewMsg] = false;
+  // const addNewMsg = () => {
+  //   setNewMsg((newMsg) => !newMsg);
+  // }
+  const [messageList, setMessageList] = useState([]);
+  const addMessage = (message) => {
+    setMessageList([...messageList, message])
+  }
+
+  useEffect(() => {
+    const sayHello = setTimeout(() => {
+      console.log('useEffect', sayHello);
+      if(messageList && messageList.length > 0){
+        const user = messageList[messageList.length - 1 ].author;
+        console.log( messageList[messageList.length - 1 ]);
+        alert(`Hello ${user}`);
+      }
+    }, 500) ; 
+  }, [messageList]);
+  
+
   return (
-    <div className='App'>
-      <p>Hello wopld</p>
-      <FirstComponent homeWork={textMessage} />
-      <SecondComponent text={secondComponentText} />
-      <StyledComponent />
-      <MessageComponent firstProps='1' secondProps={messageComponentText} />
-    </div>
+    <>
+      <button >New Message</button>
+      {/* <button onClick={newMsg}>New Message</button> */}
+      <div>
+        {/* {addNewMsg ? <MessageForm addMessage={addMessage}/> : null} */}
+        <MessageForm addMessage={addMessage}/>
+      </div>
+
+      <MessageList propsList={messageList} />
+    </>
   );
-}
+};
 
 export default App;
