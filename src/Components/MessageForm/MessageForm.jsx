@@ -1,38 +1,54 @@
-import { useState } from 'react';
-import './messageForm.scss';
+import { useState, useEffect, memo } from 'react';
+import { useStyles } from './messageFormStyles.jsx';
+import {TextField, Button} from '@material-ui/core';
+import { useRef } from "react/cjs/react.development";
 
-const MessageForm = ({addMessage}) => {
-
+const MessageForm = ({ addMessage }) => {
+  const classes = useStyles();
   const [msg, setMsg] = useState('');
   const [author, setAuthor] = useState('');
 
+  const ref = useRef(null)
+  useEffect(() => {
+    console.log(ref);
+    ref?.current.focus();
+  }, []);
+
   return (
-    <div className='message'>
-      <label >Enter your message!<input 
-        type='text'
-        value={msg}
-        onChange={(e)=>setMsg(e.target.value)}      
+    <div className={classes.root} noValidate autoComplete='off'>
+      <input type="text" ref={ref}/>
+{/* В материал не хочет ставить фокус. Пока не разобралась как заставить. Если знаешь, подскажи, пожалуйста*/}
+      <label className={classes.rootLabel}>
+        Enter your message:
+        <TextField className={classes.rootInput}
+        
+          id='standard-basic'
+          type='text'
+          value={msg}
+          onChange={(e) => setMsg(e.target.value)}
         />
       </label>
-      <label>Enter your name! <input 
-        type='text'
-        value={author}
-        onChange={(e) => setAuthor(e.target.value)}
+      <label className={classes.rootLabel}>
+        Enter your name:
+        <TextField className={classes.rootInput}
+          id='standard-basic'
+          type='text'
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
         />
       </label>
-      <button onClick={() => {
-        addMessage({text: msg, author, id: Date.now()});
-        setMsg('');
-        setAuthor('');
-      }}>
+      <Button
+        className={classes.rootButton}
+        onClick={() => {
+          addMessage({ text: msg, author, id: Date.now() });
+          setMsg('');
+          setAuthor('');
+        }}
+      >
         Add message
-      </button>
+      </Button>
     </div>
   );
 };
 
-// const MessageForm = ({ firstProps, secondProps }) => {
-//   console.log(firstProps, 'first message props');
-//   return <div className='message'>{secondProps}</div>;
-// };
-export default MessageForm;
+export default memo(MessageForm);
