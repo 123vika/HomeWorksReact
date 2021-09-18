@@ -1,27 +1,29 @@
-import { useState, useEffect, memo } from 'react';
+import { useState, memo } from 'react'; //useEffect,
 import { useStyles } from './messageFormStyles.jsx';
-import {TextField, Button} from '@material-ui/core';
-import { useRef } from "react/cjs/react.development";
+import { TextField, Button } from '@material-ui/core';
+// import { useRef } from 'react/cjs/react.development';
 
 const MessageForm = ({ addMessage }) => {
   const classes = useStyles();
   const [msg, setMsg] = useState('');
   const [author, setAuthor] = useState('');
 
-  const ref = useRef(null)
-  useEffect(() => {
-    console.log(ref);
-    ref?.current.focus();
-  }, []);
+  // const ref = useRef(null);
+  // useEffect(() => {
+  //   console.log(ref);
+  //   ref?.current.focus();
+  // }, []);
 
   return (
     <div className={classes.root} noValidate autoComplete='off'>
-      <input type="text" ref={ref}/>
-{/* В материал не хочет ставить фокус. Пока не разобралась как заставить. Если знаешь, подскажи, пожалуйста*/}
+      {/* <input type='text' ref={ref} /> */}
+      {/* В материал не хочет ставить фокус. Пока не разобралась как заставить. Если знаешь, подскажи, пожалуйста.
+      PS в материал просто ставится autoFocus, правда он потом не появляется после обрисовки таблицы*/}
       <label className={classes.rootLabel}>
         Enter your message:
-        <TextField className={classes.rootInput}
-        
+        <TextField
+          className={classes.rootInput}
+          autoFocus
           id='standard-basic'
           type='text'
           value={msg}
@@ -30,7 +32,8 @@ const MessageForm = ({ addMessage }) => {
       </label>
       <label className={classes.rootLabel}>
         Enter your name:
-        <TextField className={classes.rootInput}
+        <TextField
+          className={classes.rootInput}
           id='standard-basic'
           type='text'
           value={author}
