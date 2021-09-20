@@ -1,6 +1,5 @@
 import { List, ListItem, ListItemText } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-// import { useState } from 'react';
 import useStyles from './chatPageStyle.jsx';
 const ChatPage = () => {
   const history = useHistory();
@@ -11,10 +10,6 @@ const ChatPage = () => {
     { id: Date.now() + 3, name: 'Ivan' },
   ];
 
-  // const [chatList, setChatList] = useState([]);
-  // const changeChatList = () => {
-  //   setChatList((prevList) => [...prevList, chatList]);
-  // };
   return (
     <List className={classes.root}>
       <h2 className={classes.h2}>Chat</h2>
