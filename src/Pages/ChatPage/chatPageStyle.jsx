@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
   inline: {
     display: 'inline',
   },
+  h2: {
+    color: 'violet',
+  },
 }));
 
 export default useStyles;
