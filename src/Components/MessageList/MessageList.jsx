@@ -1,21 +1,22 @@
-// import { useState } from 'react';
-import './messageList.scss';
+import useStyles from './messageListStyle';
+import { Typography, Card, CardContent } from '@material-ui/core';
 
 const MessageList = ({ propsList }) => {
+  const classes = useStyles();
   console.log(propsList);
-  // const [messageList, setMessageList] = useState({});
-  // const changeMessageListHandler = () => {
-  //   setMessageList();
-  // };
   return (
-    <div className='container'>
+    <Card className={classes.container}>
       {propsList.map((list) => (
-        <div key={list.id}>
-          <p>Text : {list.text}</p>
-          <p>Autor : {list.author}</p>
-        </div>
+        <CardContent key={list.id}>
+          <Typography variant='body2' gutterBottom>
+            Text : {list.text}
+          </Typography>
+          <Typography variant='body2' gutterBottom>
+            Autor : {list.author}
+          </Typography>
+        </CardContent>
       ))}
-    </div>
+    </Card>
   );
 };
 
