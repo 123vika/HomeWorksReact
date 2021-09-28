@@ -1,5 +1,5 @@
 import { Button, Grid, Paper } from '@material-ui/core';
-import { useEffect, useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react'; //
 import { useStyles } from './appStyle';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import ChatPage from './Pages/ChatPage/ChatPage';
@@ -12,16 +12,10 @@ import UsersProfilePage from './Pages/UsersProfilePage/UsersProfilePage';
 function App() {
   const classes = useStyles();
 
-  let [newMsg, setNewMsg] = useState(false);
-  const addNewMsg = () => {
-    setNewMsg((newMsg) => !newMsg);
-  };
-
   const [messageList, setMessageList] = useState([]);
-  const addMessage = useCallback((message) => {
-    setMessageList((prevState) => [...prevState, message]);
-  }, []);
-
+  // const addMessage = useCallback((message) => {
+  //   setMessageList((prevState) => [...prevState, message]);
+  // }, []);
   useEffect(() => {
     const sayHello = setTimeout(() => {
       console.log('useEffect', sayHello);
@@ -32,6 +26,11 @@ function App() {
       }
     }, 250);
   }, [messageList]);
+
+  let [newMsg, setNewMsg] = useState(false);
+  const addNewMsg = () => {
+    setNewMsg((newMsg) => !newMsg);
+  };
 
   return (
     <Grid className={classes.root}>
@@ -44,13 +43,11 @@ function App() {
                   New Message
                 </Button>
               </div>
-              <div>
-                {newMsg ? <MessageForm addMessage={addMessage} /> : null}
-              </div>
+              <div>{newMsg ? <MessageForm /> : null}</div>
               {newMsg ? <MessageList propsList={messageList} /> : null}
             </Grid>
           </Route>
-
+          {/* addMessage={addMessage} */}
           <Route exact path='/chatPage'>
             <Grid>
               <Paper className={classes.paper}>
@@ -58,22 +55,18 @@ function App() {
               </Paper>
             </Grid>
           </Route>
-
           <Route exact path='/'>
             <Link to='/homePage'>Go to Home page</Link>
             <br />
             <Link to='/chatPage'>Go to Chat page</Link>
             <br />
           </Route>
-
           <Route exact path='/UsersProfile/:userId'>
             <UsersProfilePage />
           </Route>
-
           <Route exact path='/homePage'>
             <HomePage />
           </Route>
-
           <Route component={ErrorPage} />
         </Switch>
       </Router>

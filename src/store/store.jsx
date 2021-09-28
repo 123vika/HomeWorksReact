@@ -1,5 +1,11 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import usersReducer from './reducer.jsx';
+import usersReducer from './usersReducer.jsx';
+import messageListReducer from './messageListReducer.jsx';
 
-export const store = createStore(usersReducer, composeWithDevTools());
+const reducers = combineReducers({
+  usersReducer,
+  messageListReducer,
+});
+
+export const store = createStore(reducers, composeWithDevTools());

@@ -1,24 +1,23 @@
 import { useState, memo } from 'react'; //useEffect,
 import { useStyles } from './messageFormStyles.jsx';
 import { TextField, Button } from '@material-ui/core';
-// import { useRef } from 'react/cjs/react.development';
+import { useDispatch } from 'react-redux';
+import { addMessageList } from '../../actions/messageListAction.jsx';
 
-const MessageForm = ({ addMessage }) => {
+const MessageForm = () => {
+  //{ addMessage }
   const classes = useStyles();
   const [msg, setMsg] = useState('');
   const [author, setAuthor] = useState('');
 
-  // const ref = useRef(null);
-  // useEffect(() => {
-  //   console.log(ref);
-  //   ref?.current.focus();
-  // }, []);
+  const dispatch = useDispatch();
+
+  const addMessage = (message) => {
+    dispatch(addMessageList(message));
+  };
 
   return (
     <div className={classes.root} noValidate autoComplete='off'>
-      {/* <input type='text' ref={ref} /> */}
-      {/* В материал не хочет ставить фокус. Пока не разобралась как заставить. Если знаешь, подскажи, пожалуйста.
-      PS в материал просто ставится autoFocus, правда он потом не появляется после обрисовки таблицы*/}
       <label className={classes.rootLabel}>
         Enter your message:
         <TextField
