@@ -5,9 +5,9 @@ import {
 
 export const addMessageList = (userMessage) => ({
   type: ADD_MESSAGE,
-  payload: { userMessage },
+  payload: userMessage,
 });
 export const deleteMessageList = (userId) => ({
   type: DELETE_MESSAGE,
-  payload: userId,
+  payload: { id: userId },
 });
