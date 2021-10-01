@@ -1,28 +1,45 @@
 import { Button, List, ListItem, ListItemText } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import useStyles from "./chatPageStyle.jsx";
-// import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addChatList, deleteChat } from "../../actions/chatPageAction.jsx";
+import { useEffect } from "react";
 
 const ChatPage = () => {
   const classes = useStyles();
-  const history = useHistory();
-
+  // const history = useHistory();
+  const dispatch = useDispatch();
+  const storeChatList = useSelector((state) => state.chatPageReducer);
+  console.log(storeChatList, "storeChatList");
   const chatList = [
     { id: Date.now() + 1, name: "Vasyly" },
     { id: Date.now() + 2, name: "Elena" },
     { id: Date.now() + 3, name: "Ivan" },
   ];
-  // const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(addChatList(chatList));
+  }, []);
+
+  const deleteChatHandler = (chatId) => {
+    dispatch(deleteChat(chatId));
+  };
 
   return (
     <List className={classes.root}>
       <h2 className={classes.h2}>Chat</h2>
-      {chatList.map((list) => (
+      {storeChatList.map((list) => (
         <ListItem key={list.id} userId={list.id} alignItems="flex-start">
-          <div onClick={() => history.push(`/UsersProfile/${list.id}`)}>
+          {/* onClick={() => history.push(`/UsersProfile/${list.id}`)} */}
+          <div>
             <ListItemText> ID: {list.id}</ListItemText>
             <ListItemText> Name: {list.name}</ListItemText>
-            {/* <Button className={classes.rootButton}>Delete message</Button> */}
+            <Button
+              className={classes.rootButton}
+              onClick={() => deleteChatHandler(list.id)}
+            >
+              Delete message
+            </Button>
           </div>
         </ListItem>
       ))}
