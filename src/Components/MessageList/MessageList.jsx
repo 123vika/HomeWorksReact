@@ -1,17 +1,11 @@
 import useStyles from './messageListStyle';
 import { Button, Typography, Card, CardContent } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteMessageList } from '../../actions/messageListAction';
+import useMessageList from './useMessageList';
 
 const MessageList = ({ propsList }) => {
 	const classes = useStyles();
 	console.log(propsList);
-	const dispatch = useDispatch();
-	const msgList = useSelector((state) => state.messageListReducer.msg);
-	console.log(msgList, 'msgList');
-	const deleteMsgHandler = (userId) => {
-		dispatch(deleteMessageList(userId));
-	};
+	const [msgList, deleteMsgHandler] = useMessageList();
 
 	return (
 		<Card className={classes.container}>

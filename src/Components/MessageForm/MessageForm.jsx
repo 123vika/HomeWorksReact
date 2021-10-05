@@ -1,9 +1,7 @@
 import { useState, memo } from 'react'; //useEffect,
-import { useStyles } from './messageFormStyles.jsx';
+import { useStyles } from './messageFormStyles.js';
 import { TextField, Button } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
-import { robotAnswer } from '../../actions/messageListAction.jsx';
-// import { useEffect } from "react";
+import useMessageForm from './useMessageForm.js';
 
 const MessageForm = () => {
 	//{ addMessage }
@@ -11,12 +9,7 @@ const MessageForm = () => {
 	const [msg, setMsg] = useState('');
 	const [author, setAuthor] = useState('');
 
-	const dispatch = useDispatch();
-
-	const addMessage = (message) => {
-		// dispatch(addMessageList(message));
-		dispatch(robotAnswer(message));
-	};
+	const addMessage = useMessageForm();
 
 	return (
 		<div className={classes.root} noValidate autoComplete='off'>

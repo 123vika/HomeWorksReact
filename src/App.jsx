@@ -1,13 +1,14 @@
 import { Button, Grid, Paper } from '@material-ui/core';
 import { useState } from 'react'; //, useEffect, useCallback
 import { useStyles } from './appStyle';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ChatPage from './Pages/ChatPage/ChatPage';
 import MessageForm from './Components/MessageForm/MessageForm';
 import MessageList from './Components/MessageList/MessageList';
 import HomePage from './Pages/HomePage/HomePage';
 import ErrorPage from './Pages/ErrorPage/ErrorPage';
 import UsersProfilePage from './Pages/UsersProfilePage/UsersProfilePage';
+import FrontPage from './Pages/FrontPage/FrontPage';
 
 function App() {
 	const classes = useStyles();
@@ -20,6 +21,8 @@ function App() {
 	};
 
 	return (
+		// header  new component
+
 		<Grid className={classes.root}>
 			<Router>
 				<Switch>
@@ -41,14 +44,7 @@ function App() {
 							</Paper>
 						</Grid>
 					</Route>
-					<Route exact path='/'>
-						<Link to='/homePage'>Go to Home page</Link>
-						<br />
-						<Link to='/chatPage'>Go to Chat page</Link>
-						<br />
-						<br />
-						<Link to='/newMessage'>Go to new message button</Link>
-					</Route>
+					<Route exact path='/' component={FrontPage} />
 					<Route exact path='/UsersProfile/:userId'>
 						<UsersProfilePage />
 					</Route>
