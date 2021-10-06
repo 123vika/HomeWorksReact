@@ -8,6 +8,7 @@ const useMessageList = () => {
 	const deleteMsgHandler = (userId) => {
 		dispatch(deleteMessageList(userId));
 	};
+
 	return [msgList, deleteMsgHandler];
 };
 export default useMessageList;

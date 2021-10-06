@@ -6,6 +6,7 @@ import useMessageForm from './useMessageForm.js';
 const MessageForm = () => {
 	//{ addMessage }
 	const classes = useStyles();
+
 	const [msg, setMsg] = useState('');
 	const [author, setAuthor] = useState('');
 

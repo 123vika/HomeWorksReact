@@ -45,6 +45,7 @@ function App() {
 						</Grid>
 					</Route>
 					<Route exact path='/' component={FrontPage} />
+
 					<Route exact path='/UsersProfile/:userId'>
 						<UsersProfilePage />
 					</Route>

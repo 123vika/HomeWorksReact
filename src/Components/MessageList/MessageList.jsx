@@ -5,6 +5,7 @@ import useMessageList from './useMessageList';
 const MessageList = ({ propsList }) => {
 	const classes = useStyles();
 	console.log(propsList);
+
 	const [msgList, deleteMsgHandler] = useMessageList();
 
 	return (

@@ -8,6 +8,7 @@ const ChatPage = () => {
 	const history = useHistory();
 
 	const [storeChatList, deleteChatHandler] = useChatPage();
+
 	return (
 		<List className={classes.root}>
 			<h2 className={classes.h2}>Chat</h2>
