@@ -3,6 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import usersReducer from './usersReducer.jsx';
 import messageListReducer from './messageListReducer.jsx';
 import chatPageReducer from './chatPageReducer.jsx';
+import homePageReducer from './homePageReducer.jsx';
 import thunk from 'redux-thunk';
 
 //persist у меня на компьютере не захотел работать. Я писала тебе.
@@ -20,6 +21,7 @@ const rootReducers = combineReducers({
 	messageListReducer,
 	usersReducer,
 	chatPageReducer,
+	homePageReducer,
 });
 
 // const persistedReducer = persistReducer(persistConfig, rootReducers);

@@ -47,7 +47,7 @@ const RouterPage = () => {
 				<Route exact path='/homePage'>
 					<HomePage />
 				</Route>
-				<Route component={ErrorPage} />
+				{/* <Route component={ErrorPage} /> */}
 			</Switch>
 		</Router>
 	);
