@@ -1,4 +1,4 @@
 const ErrorPage = () => {
-  return <>Page non found!</>;
+	return <>Page not found!</>;
 };
 export default ErrorPage;
