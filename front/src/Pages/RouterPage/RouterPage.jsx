@@ -14,7 +14,7 @@ const RouterPage = () => {
 	const classes = useStyles();
 	const [messageList, setMessageList] = useState([]);
 
-	let [newMsg, setNewMsg] = useState(false);
+	const [newMsg, setNewMsg] = useState(false);
 	const addNewMsg = () => {
 		setNewMsg((newMsg) => !newMsg);
 	};
